@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -72,15 +73,6 @@ public class UserService {
 
 
     public User addUser(User user){
-        //user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        //send email with link to set password
-
-        String token;
-        token = RandomString.make(45);
-        String link="http://localhost:8080/api/setPassword"+token;
-        sendEmailService.sendEmail(user.getEmail(), "Passord link"+link,"Set your password");
-        String email=user.getEmail();
-
         return userRepository.save(user);
     }
     public User updateUser(int userid,User userDetails) throws UserNotFoundException {
@@ -94,7 +86,7 @@ public class UserService {
         User updatedUser=userRepository.save(user);
         return updatedUser;
     }
-    public void updateResetPasswordToken(String token,String email){
+    public void updateResetPasswordToken(UUID token, String email){
 User user=userRepository.findByEmail(email);
 if(user!=null){
     user.setResetPasswordToken(token);
@@ -111,8 +103,11 @@ if(user!=null){
         user.setResetPasswordToken(null);
         userRepository.save(user);
     }
-    public void handleLock30Mins(){
-
-    }
+//    public void handleLock30Mins(){
+//
+//    }
+public User getByResetPasswordToken(String token) {
+    return userRepository.findByResetPasswordToken(token);
+}
 
 }
