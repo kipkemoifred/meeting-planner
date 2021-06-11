@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User,Integer>{
     Optional<User> findByUserName(String userName);
+    @Query("SELECT c FROM User c WHERE c.resetPasswordToken=?1")
+    public User findByResetPasswordToken(String token);
     @Query("SELECT c FROM User c WHERE c.email=?1")
 
     User findByEmail(String email);
@@ -20,6 +22,6 @@ public interface UserRepository extends JpaRepository<User,Integer>{
     @Modifying
     public void onLoginSuccess(String userName);
 
-    public User findByResetPasswordToken(String token);
+
 
 }

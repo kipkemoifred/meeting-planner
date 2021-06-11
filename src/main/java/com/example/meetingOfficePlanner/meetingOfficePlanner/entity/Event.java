@@ -3,6 +3,7 @@ package com.example.meetingOfficePlanner.meetingOfficePlanner.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalTime;
 import java.util.Date;
 @Entity
 public class Event {
@@ -17,14 +18,16 @@ public class Event {
     //@NotBlank
     String topic;//Mandatory
     String description;//optional
+    LocalTime meetingTime;
     Event(){}
-    public Event(Date meetingStartDate, Date meetingEndDate, int capacity, boolean repetitive, String topic, String description) {
+    public Event(Date meetingStartDate, Date meetingEndDate,LocalTime meetingTime, int capacity, boolean repetitive, String topic, String description) {
         MeetingStartDate = meetingStartDate;
         MeetingEndDate = meetingEndDate;
         this.capacity = capacity;
         this.repetitive = repetitive;
         this.topic = topic;
         this.description = description;
+        this.meetingTime=meetingTime;
     }
 
     public int getEventId() {
@@ -83,6 +86,17 @@ public class Event {
         this.description = description;
     }
 
+    public LocalTime getMeetingTime() {
+        return meetingTime;
+    }
+
+    public void setMeetingTime(LocalTime meetingTime) {
+        this.meetingTime = meetingTime;
+    }
+    public boolean getRepetitive() {
+        return repetitive;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -93,12 +107,11 @@ public class Event {
                 ", repetitive=" + repetitive +
                 ", topic='" + topic + '\'' +
                 ", description='" + description + '\'' +
+                ", meetingTime=" + meetingTime +
                 '}';
     }
 
-    public boolean getRepetitive() {
-        return repetitive;
-    }
+
 }
 
 

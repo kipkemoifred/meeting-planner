@@ -89,7 +89,7 @@ public class UserService {
     public void updateResetPasswordToken(UUID token, String email){
 User user=userRepository.findByEmail(email);
 if(user!=null){
-    user.setResetPasswordToken(token);
+    user.setResetPasswordToken(token.toString());
 
 }else{
     System.out.println("user not found");

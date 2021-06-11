@@ -26,8 +26,8 @@ public class User {
     private String StakeholderPosition;
     private String email;
     private String phoneNumber;
-    private UUID resetPasswordToken;
-    public User(String userName,UUID resetPasswordToken, String password, String roles, boolean active, int numFailedLogins, int timesUsedSamePassword, boolean accountNonLocked, Date lockTime, Date lockedUntil, String stakeholderPosition, String email, String phoneNumber) {
+    private String resetPasswordToken;
+    public User(String userName,String resetPasswordToken, String password, String roles, boolean active, int numFailedLogins, int timesUsedSamePassword, boolean accountNonLocked, Date lockTime, Date lockedUntil, String stakeholderPosition, String email, String phoneNumber) {
         this.userName = userName;
         this.password = password;
         this.roles = roles;
@@ -156,11 +156,11 @@ public class User {
         this.lockTime = lockTime;
     }
 
-    public UUID getResetPasswordToken() {
+    public String getResetPasswordToken() {
         return resetPasswordToken;
     }
 
-    public void setResetPasswordToken(UUID resetPasswordToken) {
+    public void setResetPasswordToken(String resetPasswordToken) {
         this.resetPasswordToken = resetPasswordToken;
     }
 
