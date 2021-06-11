@@ -21,7 +21,7 @@ public class SMS {
         this.message = message;
     }
 
-//UUUUUUHCCFGGDS
+//UUUUUUHCCFGGDSFGFGFG
     @Override
     public String toString() {
         return "SMS{" +
