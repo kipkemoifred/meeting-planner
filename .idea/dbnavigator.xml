@@ -45,6 +45,9 @@
     <filter-actions connection-id="4fae581c-8069-4eb5-ae1c-08a9bd8c6524" dataset="meetingofficeplanner.user" active-filter-id="c20bbc7d-ce15-48ad-8a60-bb7c9ecd9436">
       <filter id="c20bbc7d-ce15-48ad-8a60-bb7c9ecd9436" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>
+    <filter-actions connection-id="4fae581c-8069-4eb5-ae1c-08a9bd8c6524" dataset="meetingofficeplanner.user_password" active-filter-id="EMPTY_FILTER">
+      <filter id="d341188d-2aaf-425d-a01d-5b68fdb567ac" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

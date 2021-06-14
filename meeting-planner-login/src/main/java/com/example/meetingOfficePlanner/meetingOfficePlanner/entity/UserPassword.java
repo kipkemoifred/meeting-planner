@@ -9,14 +9,16 @@ public class UserPassword {
     @Id
     @GeneratedValue
     private int id;
-    private int userId;
+    private String email;
     private String password;
 
-    public UserPassword(int userId, String password) {
-        this.userId = userId;
+    public UserPassword(int id, String email, String password) {
+        this.id = id;
+        this.email = email;
         this.password = password;
     }
-    UserPassword(){}
+
+    public UserPassword(){}
 
     public int getId() {
         return id;
@@ -26,12 +28,12 @@ public class UserPassword {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -46,7 +48,7 @@ public class UserPassword {
     public String toString() {
         return "UserPassword{" +
                 "id=" + id +
-                ", userId=" + userId +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

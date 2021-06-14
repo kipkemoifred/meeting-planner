@@ -3,14 +3,9 @@ package com.example.meetingOfficePlanner.meetingOfficePlanner.model;
 public class Password {
     private String passwordName;
     private String token;
+    private String email;
 
-    @Override
-    public String toString() {
-        return "Password{" +
-                "passwordName='" + passwordName + '\'' +
-                ", token='" + token + '\'' +
-                '}';
-    }
+
 
     public String getToken() {
         return token;
@@ -33,4 +28,20 @@ public class Password {
         this.passwordName = passwordName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Password{" +
+                "passwordName='" + passwordName + '\'' +
+                ", token='" + token + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

@@ -2,7 +2,9 @@ package com.example.meetingOfficePlanner.meetingOfficePlanner.controller;
 
 import com.example.meetingOfficePlanner.meetingOfficePlanner.entity.Room;
 import com.example.meetingOfficePlanner.meetingOfficePlanner.entity.User;
+import com.example.meetingOfficePlanner.meetingOfficePlanner.entity.UserPassword;
 import com.example.meetingOfficePlanner.meetingOfficePlanner.model.PasswordSet;
+import com.example.meetingOfficePlanner.meetingOfficePlanner.repository.UserPasswordRepository;
 import com.example.meetingOfficePlanner.meetingOfficePlanner.repository.UserRepository;
 import com.example.meetingOfficePlanner.meetingOfficePlanner.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/")
 
 public class SetPasswordController {
+    @Autowired
+    private UserPasswordRepository userPasswordRepository;
     @Autowired
     private UserRepository userRepository;
     @PostMapping(value = "/setPassword")
@@ -24,6 +28,11 @@ User user= userRepository.findByEmail(email);
 user.setPassword(passwordset);
 
         userRepository.save(user);
+       UserPassword userPassword=new UserPassword();
+       userPassword.setPassword(passwordset);
+       userPassword.setEmail(email);
+        userPasswordRepository.save(userPassword);
+
 return ("set");
     }
 }
