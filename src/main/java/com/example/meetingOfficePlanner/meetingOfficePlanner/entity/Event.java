@@ -1,11 +1,15 @@
 package com.example.meetingOfficePlanner.meetingOfficePlanner.entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 import java.util.Date;
+
 @Entity
-public class Event {
+
+public class  Event  {
     @Id
     @GeneratedValue
     int eventId;
@@ -17,14 +21,18 @@ public class Event {
     //@NotBlank
     String topic;//Mandatory
     String description;//optional
-    Event(){}
     public Event(Date meetingStartDate, Date meetingEndDate, int capacity, boolean repetitive, String topic, String description) {
+        super();
         MeetingStartDate = meetingStartDate;
         MeetingEndDate = meetingEndDate;
         this.capacity = capacity;
         this.repetitive = repetitive;
         this.topic = topic;
         this.description = description;
+    }
+
+    public Event() {
+
     }
 
     public int getEventId() {

@@ -1,5 +1,4 @@
 package com.example.meetingOfficePlanner.meetingOfficePlanner;
-
 import com.example.meetingOfficePlanner.meetingOfficePlanner.repository.UserRepository;
 import com.example.meetingOfficePlanner.meetingOfficePlanner.service.SendEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,10 @@ public class MeetingOfficePlannerApplication {
 //	@Autowired
 //	private SendEmailService sendEmailService;
 
-	public static void main(String[] args) {
-		SpringApplication.run(MeetingOfficePlannerApplication.class, args);
-	}
-	//@EventListener(ApplicationReadyEvent.class)
+    public static void main(String[] args) {
+        SpringApplication.run(MeetingOfficePlannerApplication.class, args);
+    }
+    //@EventListener(ApplicationReadyEvent.class)
 //public void triggerWhenStarts(){
 //		sendEmailService.sendEmail("kipkemoifred2018@gmail.com","Hi","test");
 //	}

@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @RestController
 public class HomeResource {
-    private static final int MAX_FAILED_ATTEMPTS =4 ;
+    private static final int MAX_FAILED_ATTEMPTS = 4;
     @Autowired
     private
     AuthenticationManager authenticationManager;
@@ -61,8 +61,8 @@ public class HomeResource {
 
             User user=userRepository.findByUserName(authenticationRequest.getUsername()).orElseThrow();
             int failedTimes=user.getNumFailedLogins();
-            System.out.println(user.getUserName()+"sfadasdfsdf");
-            if (user != null) {
+            System.out.println(user.getUserName() +"sfadasdfsdf" );
+            if (null != user) {
                 if (user.isActive() && user.isAccountNonLocked()) {
              if(failedTimes==MAX_FAILED_ATTEMPTS-1){
                 userService.lock(user);

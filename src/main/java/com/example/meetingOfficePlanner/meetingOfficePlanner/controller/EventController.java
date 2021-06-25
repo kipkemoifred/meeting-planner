@@ -35,7 +35,7 @@ public class EventController {
     public Event updateEvent(@RequestBody Event event) throws EventNotFoundException {
         return eventService.updateEvent(event.getEventId(), event);
     }
-    @DeleteMapping("/deleteanyevent/{eventId}")
+    @DeleteMapping("/deleteevent/{eventId}")
     public ResponseEntity<?> deleteEvent(@PathVariable(value = "eventId") int eventId) throws EventNotFoundException {
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new EventNotFoundException(eventId));

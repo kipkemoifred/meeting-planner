@@ -1,6 +1,5 @@
 package com.example.meetingOfficePlanner.meetingOfficePlanner.config;
 
-//import com.example.meetingOfficePlanner.meetingOfficePlanner.entity.User;
 import com.example.meetingOfficePlanner.meetingOfficePlanner.entity.User;
 import com.example.meetingOfficePlanner.meetingOfficePlanner.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,10 @@
 package com.example.meetingOfficePlanner.meetingOfficePlanner.config;
 
+import com.example.meetingOfficePlanner.meetingOfficePlanner.filters.CorsFilter;
 import com.example.meetingOfficePlanner.meetingOfficePlanner.filters.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,7 +16,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.SessionManagementFilter;
 
+
+import java.util.Arrays;
+
+@Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -28,7 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
-        @Bean
+    @Bean
+    CorsFilter corsFilter() {
+        CorsFilter filter = new CorsFilter();
+        return filter;
+    }
+
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
@@ -45,7 +58,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
+        httpSecurity
+                .addFilterBefore(corsFilter(), SessionManagementFilter.class) //adds your custom CorsFilter
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/createuser").hasAuthority("admin")
                 .antMatchers("/api/createboardmeetings").hasRole("ADMIN")
@@ -54,7 +69,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/cancelownevents").hasAnyRole("ADMIN", "USER")//todo
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
-
                 .and().logout().permitAll().and().
                 exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
